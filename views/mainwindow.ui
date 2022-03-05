@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>759</width>
+    <height>312</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QWidget" name="body" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QWidget" name="navigator" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Welcome, please use the Menu in the upper left corner to browse this app!</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>759</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuMenu">
+    <property name="title">
+     <string>Menu</string>
+    </property>
+    <addaction name="actionDepartments"/>
+    <addaction name="actionMarital_Status"/>
+    <addaction name="actionProduct_Groups"/>
+    <addaction name="actionStates"/>
+    <addaction name="actionSuppliers"/>
+    <addaction name="actionZones"/>
+   </widget>
+   <addaction name="menuMenu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionDepartment">
+   <property name="text">
+    <string>Department</string>
+   </property>
+  </action>
+  <action name="on">
+   <property name="text">
+    <string>Department</string>
+   </property>
+  </action>
+  <action name="actionDepartment_2">
+   <property name="text">
+    <string>Department</string>
+   </property>
+  </action>
+  <action name="actionDepartments">
+   <property name="text">
+    <string>Departments</string>
+   </property>
+  </action>
+  <action name="actionStates">
+   <property name="text">
+    <string>States</string>
+   </property>
+  </action>
+  <action name="actionZones">
+   <property name="text">
+    <string>Zones</string>
+   </property>
+  </action>
+  <action name="actionProduct_Groups">
+   <property name="text">
+    <string>Product Groups</string>
+   </property>
+  </action>
+  <action name="actionSuppliers">
+   <property name="text">
+    <string>Suppliers</string>
+   </property>
+  </action>
+  <action name="actionMarital_Status">
+   <property name="text">
+    <string>Marital Status</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
