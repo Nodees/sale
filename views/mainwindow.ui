@@ -24,7 +24,7 @@
           <item>
            <widget class="QLabel" name="label">
             <property name="text">
-             <string>Welcome, please use the Menu in the upper left corner to browse this app!</string>
+             <string>Welcome, please use the Menu in the upper left corner to browse this app!!</string>
             </property>
            </widget>
           </item>
