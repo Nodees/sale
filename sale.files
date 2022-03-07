@@ -1,7 +1,5 @@
-controllers/__init__.py
-libs/conn.py
-libs/functions.py
-models/__init__.py
+main.py
+requirements.txt
 views/__init__.py
 views/department.ui
 views/mainwindow.ui
