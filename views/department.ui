@@ -52,7 +52,7 @@
        <widget class="QLineEdit" name="name_department"/>
       </item>
       <item>
-       <widget class="QPushButton" name="on_search_department">
+       <widget class="QPushButton" name="on_add_department">
         <property name="text">
          <string>Add</string>
         </property>
@@ -108,6 +108,14 @@
         <column>
          <property name="text">
           <string>Updatad</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Active</string>
          </property>
          <property name="textAlignment">
           <set>AlignCenter</set>
