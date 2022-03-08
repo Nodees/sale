@@ -1,11 +1,7 @@
+import os
+import sys
+
 from libs.conn import connection, conn
-#
-#
-# def select_all(table=None):
-#     values = conn.execute(f"SELECT * FROM {table}")
-#     values = conn.fetchall()
-#
-#     return values
 
 
 def select_all(table=None):
@@ -31,3 +27,44 @@ def select_all(table=None):
 
     return obj_list
 
+
+def delete_function(table, data):
+    try:
+        conn.execute(f'delete from {table} where id = {data}')
+        connection.commit()
+        connection.close()
+
+        python = sys.executable
+        os.execl(python, python, *sys.argv)
+
+    except Exception as erro:
+        print(erro)
+
+
+def insert_function(table, data):
+    columns = []
+    items = []
+
+    print(data)
+
+    # for column, item in data.items():
+    #     columns.append(column)
+    #     items.append(item)
+    #
+    # columns = columns.join(',')
+    # items = items.join(',')
+    #
+    # print(columns)
+    # print(items)
+
+    # try:
+    #     conn.execute(f'insert into {table} ({columns}) values ({items})')
+    #     connection.commit()
+    #     connection.close()
+    #
+    #     python = sys.executable
+    #     os.execl(python, python, *sys.argv)
+    #
+    #     return 'ok'
+    # except Exception as error:
+    #     print(error)
