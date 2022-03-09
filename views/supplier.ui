@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>617</width>
-    <height>368</height>
+    <width>587</width>
+    <height>396</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,18 +16,6 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QWidget" name="panel_add" native="true">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>120</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>120</height>
-      </size>
-     </property>
      <layout class="QVBoxLayout" name="verticalLayout_5">
       <item>
        <widget class="QLabel" name="title_supplier">
@@ -42,20 +30,42 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_name_supplier">
-        <property name="text">
-         <string>Name:</string>
-        </property>
+       <widget class="QWidget" name="inputs" native="true">
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_name_supplier">
+           <property name="text">
+            <string>Name:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="name_supplier"/>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_document">
+           <property name="text">
+            <string>Document:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLineEdit" name="document"/>
+         </item>
+        </layout>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="name_supplier"/>
-      </item>
-      <item>
-       <widget class="QPushButton" name="on_add_supplier">
-        <property name="text">
-         <string>Add</string>
-        </property>
+       <widget class="QWidget" name="buttons" native="true">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QPushButton" name="on_add_supplier">
+           <property name="text">
+            <string>Add</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
      </layout>
@@ -72,23 +82,8 @@
           <height>200</height>
          </size>
         </property>
-        <property name="maximumSize">
-         <size>
-          <width>720</width>
-          <height>200</height>
-         </size>
-        </property>
         <attribute name="horizontalHeaderCascadingSectionResizes">
-         <bool>true</bool>
-        </attribute>
-        <attribute name="horizontalHeaderDefaultSectionSize">
-         <number>112</number>
-        </attribute>
-        <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
          <bool>false</bool>
-        </attribute>
-        <attribute name="horizontalHeaderStretchLastSection">
-         <bool>true</bool>
         </attribute>
         <column>
          <property name="text">
@@ -128,6 +123,24 @@
          </property>
          <property name="textAlignment">
           <set>AlignCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Active</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string/>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string/>
          </property>
         </column>
        </widget>

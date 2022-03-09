@@ -45,26 +45,21 @@ def insert_function(table, data):
     columns = []
     items = []
 
-    print(data)
+    for column, item in data.items():
+        columns.append(column)
+        items.append(item)
 
-    # for column, item in data.items():
-    #     columns.append(column)
-    #     items.append(item)
-    #
-    # columns = columns.join(',')
-    # items = items.join(',')
-    #
-    # print(columns)
-    # print(items)
+    columns = ",".join(columns)
+    items = "','".join(items)
 
-    # try:
-    #     conn.execute(f'insert into {table} ({columns}) values ({items})')
-    #     connection.commit()
-    #     connection.close()
-    #
-    #     python = sys.executable
-    #     os.execl(python, python, *sys.argv)
-    #
-    #     return 'ok'
-    # except Exception as error:
-    #     print(error)
+    try:
+        conn.execute(f"insert into {table} ({columns}) values ('{items}')")
+        connection.commit()
+        connection.close()
+
+        python = sys.executable
+        os.execl(python, python, *sys.argv)
+
+        return 'ok'
+    except Exception as error:
+        print(error)

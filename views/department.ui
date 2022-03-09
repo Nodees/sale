@@ -78,9 +78,6 @@
           <height>400</height>
          </size>
         </property>
-        <attribute name="horizontalHeaderStretchLastSection">
-         <bool>false</bool>
-        </attribute>
         <column>
          <property name="text">
           <string>Id</string>

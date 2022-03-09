@@ -52,7 +52,7 @@
        <widget class="QLineEdit" name="name_zone"/>
       </item>
       <item>
-       <widget class="QPushButton" name="on_search_zone">
+       <widget class="QPushButton" name="on_add_zone">
         <property name="text">
          <string>Add</string>
         </property>
@@ -78,27 +78,6 @@
           <height>200</height>
          </size>
         </property>
-        <attribute name="horizontalHeaderCascadingSectionResizes">
-         <bool>true</bool>
-        </attribute>
-        <attribute name="horizontalHeaderDefaultSectionSize">
-         <number>143</number>
-        </attribute>
-        <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-         <bool>false</bool>
-        </attribute>
-        <attribute name="horizontalHeaderStretchLastSection">
-         <bool>true</bool>
-        </attribute>
-        <attribute name="verticalHeaderDefaultSectionSize">
-         <number>30</number>
-        </attribute>
-        <attribute name="verticalHeaderShowSortIndicator" stdset="0">
-         <bool>false</bool>
-        </attribute>
-        <attribute name="verticalHeaderStretchLastSection">
-         <bool>false</bool>
-        </attribute>
         <column>
          <property name="text">
           <string>Id</string>
@@ -129,6 +108,24 @@
          </property>
          <property name="textAlignment">
           <set>AlignCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Active</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string/>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string/>
          </property>
         </column>
        </widget>

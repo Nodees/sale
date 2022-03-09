@@ -10,11 +10,13 @@ class departmentWindowController(QWidget, Ui_departments):
         super(departmentWindowController, self).__init__(parent=parent)
         self.setupUi(self)
 
-        self.obj = {
-            'name': self.name_department.text()
-        }
-
         self.on_add_department.clicked.connect(self.insert_method)
 
     def insert_method(self):
-        insert_function('department', self.obj)
+        name = self.name_department.text()
+
+        obj = {
+            'name': str(name)
+        }
+
+        insert_function('department', obj)

@@ -30,8 +30,8 @@ class MainWindowController(QMainWindow, Ui_MainWindow):
 
     def _on_click_actionDepartments(self):
         self.widget = departmentWindowController(parent=self)
-        self.body.layout().addWidget(self.widget)
         self._clear_layout_body()
+        self.body.layout().addWidget(self.widget)
 
         self.table = self.widget.list_departments
         self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
@@ -42,25 +42,45 @@ class MainWindowController(QMainWindow, Ui_MainWindow):
         self._clear_layout_body()
         self.body.layout().addWidget(self.widget)
 
+        self.table = self.widget.list_maritalstatus
+        self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+        self.table_items('marital_status')
+
     def _on_click_actionsProductGroup(self):
         self.widget = productGroupController(parent=self)
         self._clear_layout_body()
         self.body.layout().addWidget(self.widget)
+
+        self.table = self.widget.list_productGroups
+        self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+        self.table_items('product_group')
 
     def _on_click_actionStates(self):
         self.widget = sateWindowController(parent=self)
         self._clear_layout_body()
         self.body.layout().addWidget(self.widget)
 
+        self.table = self.widget.list_states
+        self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+        self.table_items('state')
+
     def _on_click_actionSupplier(self):
         self.widget = supplierController(parent=self)
         self._clear_layout_body()
         self.body.layout().addWidget(self.widget)
 
+        self.table = self.widget.list_suppliers
+        self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+        self.table_items('supplier')
+
     def _on_click_actionZone(self):
         self.widget = zoneController(parent=self)
         self._clear_layout_body()
         self.body.layout().addWidget(self.widget)
+
+        self.table = self.widget.list_zones
+        self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+        self.table_items('zone')
 
     def table_items(self, table=None):
 

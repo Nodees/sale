@@ -72,7 +72,6 @@ class Ui_departments(object):
         self.list_departments.setHorizontalHeaderItem(5, item)
         item = QtWidgets.QTableWidgetItem()
         self.list_departments.setHorizontalHeaderItem(6, item)
-        self.list_departments.horizontalHeader().setStretchLastSection(False)
         self.verticalLayout_3.addWidget(self.list_departments)
         self.verticalLayout_4.addWidget(self.panel_list)
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
