@@ -5,5 +5,5 @@ try:
     conn = connection.cursor()
 
     print('Successfully Connected!')
-except Exception as erro:
-    print(f'ERROR: {erro}')
+except Exception as error:
+    print(f'ERROR: {error}')

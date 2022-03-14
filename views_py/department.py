@@ -14,6 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_departments(object):
     def setupUi(self, departments):
         departments.setObjectName("departments")
+        departments.setEnabled(True)
         departments.resize(666, 568)
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(departments)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
@@ -50,6 +51,9 @@ class Ui_departments(object):
         sizePolicy.setHeightForWidth(self.list_departments.sizePolicy().hasHeightForWidth())
         self.list_departments.setSizePolicy(sizePolicy)
         self.list_departments.setMinimumSize(QtCore.QSize(0, 400))
+        self.list_departments.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.list_departments.setTabKeyNavigation(False)
+        self.list_departments.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
         self.list_departments.setObjectName("list_departments")
         self.list_departments.setColumnCount(7)
         self.list_departments.setRowCount(0)

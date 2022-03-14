@@ -7,4 +7,8 @@ views/maritalStatus.ui
 views/productGroup.ui
 views/state.ui
 views/supplier.ui
+views/update_department.ui
+views/update_productgroup.ui
+views/update_state.ui
+views/update_supplier.ui
 views/zone.ui

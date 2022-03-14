@@ -1,15 +1,7 @@
-from PyQt5.QtWidgets import QMainWindow, QWidget, QPushButton, QTableWidgetItem, QHeaderView
+from PyQt5.QtWidgets import QMainWindow, QPushButton, QTableWidgetItem, QHeaderView, QCheckBox
+import controllers.controllers as controller
 
-from controllers.department_controller import departmentWindowController
-from controllers.stateWindow_controller import sateWindowController
-from controllers.supplier_controller import supplierController
-from controllers.zone_controller import zoneController
-from controllers.productGroup_controller import productGroupController
-from controllers.maritalStatus_controller import maritalStatusController
-
-import models.models as model
-
-from libs.functions import select_all, delete_function, insert_function
+from libs.functions import select_all, delete_function, logical_delete_function
 
 from views_py.mainwindow import Ui_MainWindow
 
@@ -29,7 +21,7 @@ class MainWindowController(QMainWindow, Ui_MainWindow):
         self.actionZones.triggered.connect(self._on_click_actionZone)
 
     def _on_click_actionDepartments(self):
-        self.widget = departmentWindowController(parent=self)
+        self.widget = controller.departmentWindowController(parent=self)
         self._clear_layout_body()
         self.body.layout().addWidget(self.widget)
 
@@ -38,7 +30,7 @@ class MainWindowController(QMainWindow, Ui_MainWindow):
         self.table_items('department')
 
     def _on_click_actionMaritalStatus(self):
-        self.widget = maritalStatusController(parent=self)
+        self.widget = controller.maritalStatusController(parent=self)
         self._clear_layout_body()
         self.body.layout().addWidget(self.widget)
 
@@ -47,7 +39,7 @@ class MainWindowController(QMainWindow, Ui_MainWindow):
         self.table_items('marital_status')
 
     def _on_click_actionsProductGroup(self):
-        self.widget = productGroupController(parent=self)
+        self.widget = controller.productGroupController(parent=self)
         self._clear_layout_body()
         self.body.layout().addWidget(self.widget)
 
@@ -56,7 +48,7 @@ class MainWindowController(QMainWindow, Ui_MainWindow):
         self.table_items('product_group')
 
     def _on_click_actionStates(self):
-        self.widget = sateWindowController(parent=self)
+        self.widget = controller.sateWindowController(parent=self)
         self._clear_layout_body()
         self.body.layout().addWidget(self.widget)
 
@@ -65,7 +57,7 @@ class MainWindowController(QMainWindow, Ui_MainWindow):
         self.table_items('state')
 
     def _on_click_actionSupplier(self):
-        self.widget = supplierController(parent=self)
+        self.widget = controller.supplierController(parent=self)
         self._clear_layout_body()
         self.body.layout().addWidget(self.widget)
 
@@ -74,7 +66,7 @@ class MainWindowController(QMainWindow, Ui_MainWindow):
         self.table_items('supplier')
 
     def _on_click_actionZone(self):
-        self.widget = zoneController(parent=self)
+        self.widget = controller.zoneController(parent=self)
         self._clear_layout_body()
         self.body.layout().addWidget(self.widget)
 
@@ -83,7 +75,6 @@ class MainWindowController(QMainWindow, Ui_MainWindow):
         self.table_items('zone')
 
     def table_items(self, table=None):
-
         self.list = select_all(table)
         self.table.setRowCount(len(self.list))
         columns = len(self.list[0])
@@ -91,16 +82,21 @@ class MainWindowController(QMainWindow, Ui_MainWindow):
         for i, item in enumerate(self.list):
             for j, value in enumerate(item):
                 content = QTableWidgetItem()
-                content.setTextAlignment(4)
-                content.setText(str(item[value]))
+                checkbox = QCheckBox()
+
+                if value == 'active':
+                    checkbox.setChecked(item[value])
+                    self.table.setCellWidget(i, j, checkbox)
+                else:
+                    content.setText(str(item[value]))
 
                 self.table.setItem(i, j, content)
 
                 button_delete = self._on_delete('Delete')
                 button_update = self._on_update('Update')
 
-                self.table.setCellWidget(i, columns, button_delete)
-                self.table.setCellWidget(i, columns + 1, button_update)
+                self.table.setCellWidget(i, columns, button_update)
+                self.table.setCellWidget(i, columns + 1, button_delete)
 
                 button_delete.clicked.connect(
                     lambda clicked, data=item['id']: self.delete_method(table, data)
@@ -108,6 +104,10 @@ class MainWindowController(QMainWindow, Ui_MainWindow):
 
                 button_update.clicked.connect(
                     lambda clicked, data=item: self.update_method(table, data)
+                )
+
+                checkbox.clicked.connect(
+                    lambda clicked, data=item['id']: self.logical_delete_method(table, data, checkbox.isChecked())
                 )
 
     @staticmethod
@@ -131,8 +131,22 @@ class MainWindowController(QMainWindow, Ui_MainWindow):
         delete_function(table, data)
 
     @staticmethod
-    def update_method(table, data: dict):
-        pass
+    def logical_delete_method(table, data: int, status: bool):
+        print(status)
+        # logical_delete_function(table, data, status)
+
+    def update_method(self, table, data: dict):
+
+        if table == 'supplier':
+            my_dialog = controller.updateSupplier(self, table, **data)
+        elif table == 'state':
+            my_dialog = controller.updateState(self, table, **data)
+        elif table == 'product_group':
+            my_dialog = controller.updateProductGroup(self, table, **data)
+        else:
+            my_dialog = controller.updateDepartment(self, table, **data)
+
+        my_dialog.exec_()
 
     def _clear_layout_body(self):
         navigator = self.body.layout().takeAt(0)

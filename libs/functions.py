@@ -1,44 +1,42 @@
-import os
-import sys
+# import os
+# import sys
+from PyQt5.QtWidgets import QMessageBox
 
 from libs.conn import connection, conn
 
 
 def select_all(table=None):
-    aux = {}
-    obj_list = []
+    with connection:
+        sql = f'SELECT * FROM {table} ORDER BY id DESC'
 
-    values = conn.execute(f"SELECT * FROM {table}")
-    values = conn.fetchall()
+        conn.execute(sql)
+        result = conn.fetchall()
 
-    column_names = conn.execute(f"SELECT column_name, ordinal_position "
-                                f"FROM INFORMATION_SCHEMA.COLUMNS "
-                                f"WHERE TABLE_NAME = '{table}' ORDER BY ordinal_position")
-    column_names = conn.fetchall()
-
-    for column in column_names:
-        aux.update({column[0]: ''})
-
-    for value in values:
-        for index, column in enumerate(aux):
-            aux.update({column: value[index]})
-        copy = aux.copy()
-        obj_list.append(copy)
-
-    return obj_list
+        columns = [column[0] for column in conn.description]
+        rows = [dict(zip(columns, row)) for row in result]
+        return rows
 
 
 def delete_function(table, data):
     try:
-        conn.execute(f'delete from {table} where id = {data}')
-        connection.commit()
-        connection.close()
+        with connection:
+            sql = f'delete from {table} where id = {data}'
+            conn.execute(sql)
+            connection.commit()
 
-        python = sys.executable
-        os.execl(python, python, *sys.argv)
+    except Exception as error:
+        alert_dialog(str(error), 'Error')
 
-    except Exception as erro:
-        print(erro)
+
+def logical_delete_function(table, data, value):
+    try:
+        with connection:
+            sql = f'update {table} set active = {value} where id = {data}'
+            conn.execute(sql)
+            connection.commit()
+
+    except Exception as error:
+        alert_dialog(str(error), 'Error')
 
 
 def insert_function(table, data):
@@ -53,13 +51,50 @@ def insert_function(table, data):
     items = "','".join(items)
 
     try:
-        conn.execute(f"insert into {table} ({columns}) values ('{items}')")
-        connection.commit()
-        connection.close()
+        with connection:
+            sql = f"insert into {table} ({columns}) values ('{items}')"
+            conn.execute(sql)
+            connection.commit()
 
-        python = sys.executable
-        os.execl(python, python, *sys.argv)
+            alert_dialog('successfully added', 'success')
 
-        return 'ok'
+            return 'ok'
     except Exception as error:
-        print(error)
+        alert_dialog(str(error), 'Error')
+
+
+def update_function(table, data):
+    set_list = []
+
+    for column, item in data.items():
+        set_list.append(f"{column} = '{item}'")
+
+    sets = ','.join(set_list)
+
+    try:
+        with connection:
+            sql = f"update {table} set {sets} where id = {data.get('id')}"
+            conn.execute(sql)
+            connection.commit()
+
+            return 'ok'
+    except Exception as error:
+        alert_dialog(str(error), 'Error')
+
+
+def alert_dialog( msg: str, title: str):
+
+    msgBox = QMessageBox()
+
+    if title == 'success':
+        type_dialog = QMessageBox.Information
+        type_button = QMessageBox.Ok
+    else:
+        type_dialog = QMessageBox.Warning
+        type_button = QMessageBox.Close
+
+    msgBox.setIcon(type_dialog)
+    msgBox.setText(msg)
+    msgBox.setWindowTitle(title)
+    msgBox.setStandardButtons(type_button)
+    msgBox.exec()

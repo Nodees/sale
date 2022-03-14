@@ -1,3 +1,4 @@
 .idea
 Sale.creator.user
-__apache__
+sale.creator.user
+__pycache__/
